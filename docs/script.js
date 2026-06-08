@@ -495,4 +495,8 @@ detectarNavegadorProblemas();
   document.addEventListener('touchcancel', function() {
     ocultarAro();
   });
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> 73649335109992d7b12628c1499be224a49df3df
