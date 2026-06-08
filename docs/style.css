@@ -1,0 +1,998 @@
+/* ===== CSS3 ===== */
+body {
+  margin: 0;
+  background: #111;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  padding: 100px 0;
+  box-sizing: border-box;
+}
+
+#cursor {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #ff0000;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, opacity 0.15s ease;
+  z-index: 10000;
+  box-shadow: 0 0 15px rgba(255,0,0,0.6);
+  background: rgba(255,0,0,0.05);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+}
+
+/* Senefas - VERSIÓN PC ORIGINAL */
+.senefa {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 3cm;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#senefaArriba { top: -100px; }
+#senefaAbajo { bottom: -100px; }
+
+.senefaTexto {
+  font-size: 3em;
+  color: white;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
+  background: transparent !important;
+}
+
+.senefa2 {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  background-image: url('img/rojo-metalizado.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  pointer-events: none;
+}
+
+#senefaArriba2 { top: 0; left: 0; }
+#senefaAbajo2 { bottom: 0; left: 0; }
+
+.senefa-contenido {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.senefaTextoMetal {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 8px;
+  text-shadow: 0 0 10px rgba(255,0,0,0.8), 0 0 20px rgba(255,0,0,0.6), 0 0 30px rgba(255,0,0,0.4);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Rompecabezas */
+#rompecabezas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  background: #000;
+  gap: 0;
+}
+
+.pieza {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* Carruseles */
+#contenedor-carruseles {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  padding: 40px 0;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#contenedor-carruseles::-webkit-scrollbar {
+  width: 8px;
+}
+#contenedor-carruseles::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+#contenedor-carruseles::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 4px;
+}
+
+.seccion-carrusel {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 120px auto;
+  padding: 40px 0;
+}
+
+.seccion-carrusel:hover .titulo-seccion {
+  text-shadow: 0 0 20px rgba(255,0,0,0.9);
+  letter-spacing: 8px;
+}
+
+#seccion-ilustraciones {
+  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('img/ilustraciones.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 60px 20px 60px 20px;
+  padding: 60px 20px;
+}
+
+#seccion-renders {
+  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('img/renders.png');
+  background-size: 82% auto;
+  background-position: top center;
+  background-attachment: fixed;
+  border-radius: 60px 20px 60px 20px;
+  padding: 60px 20px;
+}
+
+#seccion-logos {
+  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('img/logos.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 60px 20px 60px 20px;
+  padding: 60px 20px;
+}
+
+#seccion-impresos {
+  background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('img/impresos.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 60px 20px 60px 20px;
+  padding: 60px 20px;
+}
+
+.titulo-seccion {
+  font-size: 2.8em;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #fff, #ff0000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 5px;
+  position: relative;
+  display: inline-block;
+  width: auto;
+  padding: 10px 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.titulo-seccion::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff0000);
+  margin-right: 20px;
+  transform: translateY(-50%);
+}
+
+.titulo-seccion::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0000, transparent);
+  margin-left: 20px;
+  transform: translateY(-50%);
+}
+
+/* Swiper */
+.swiper {
+  width: 100%;
+  padding: 20px 0;
+  overflow: visible;
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.8);
+  min-height: 500px;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  opacity: 0.7;
+  transform: scale(0.85);
+}
+
+.swiper-slide img {
+  width: auto;
+  max-width: 100%;
+  max-height: 400px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.swiper-slide-active img {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(255,0,0,0.25);
+}
+
+/* Botones de navegación */
+.swiper-button-prev, .swiper-button-next {
+  color: #ff0000;
+  background: rgba(0,0,0,0.6);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  background: #ff0000;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-size: 18px;
+}
+
+/* Paginación */
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5);
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff0000;
+  width: 20px;
+  border-radius: 5px;
+}
+
+/* Características */
+.caracteristicas {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: transparent;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  color: #ff0000;
+}
+
+.card p {
+  font-size: 0.85em;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Texto debajo de fotos */
+.foto-con-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-foto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+  font-family: 'Orbitron', sans-serif;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.info-foto .nombre {
+  color: #ff3333;
+  font-size: 0.85em;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.info-foto .año {
+  color: #ffffff;
+  font-size: 0.8em;
+  opacity: 0.9;
+}
+
+.info-foto .lugar {
+  color: #ff8888;
+  font-size: 0.75em;
+}
+
+.foto-con-texto:hover .info-foto {
+  border-color: rgba(255, 0, 0, 0.9);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+}
+
+/* Efecto hover foto central */
+.swiper-slide-active img:hover {
+  transform: scale(1.13);
+  box-shadow: 0 25px 50px rgba(255, 0, 0, 0.5);
+}
+
+/* ===== CORRECCIÓN DEFINITIVA PARA IMPRESOS ===== */
+#seccion-impresos .swiper-slide {
+  background: transparent !important;
+}
+
+#seccion-impresos .foto-con-texto {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#seccion-impresos .swiper-slide img {
+  background: transparent !important;
+  border-radius: 20px !important;
+}
+
+#seccion-impresos .swiper-slide-active {
+  background: transparent !important;
+}
+
+/* Ondas */
+.onda-click {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%) scale(0);
+  animation: expandirOnda 0.6s ease-out forwards;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+@keyframes expandirOnda {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0;
+  }
+}
+
+/* Destello */
+@keyframes destello {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 10px rgba(255,0,0,0.5)); }
+  100% { filter: brightness(1); }
+}
+
+/* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== */
+@media (max-width: 768px) and (orientation: portrait) {
+  #cursor { display: none !important; }
+  
+  body {
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: auto !important;
+  }
+  
+  #contenedor-carruseles {
+    min-height: auto !important;
+    padding: 20px 0 !important;
+  }
+  
+  .senefa2 {
+    position: fixed !important;
+    height: 45px !important;
+  }
+  
+  .senefaTextoMetal {
+    font-size: 1.2em !important;
+    letter-spacing: 2px !important;
+    white-space: normal !important;
+    padding: 0 10px !important;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.3em !important;
+    padding: 5px 10px !important;
+  }
+  
+  .titulo-seccion::before,
+  .titulo-seccion::after {
+    width: 25px !important;
+  }
+  
+  .swiper-slide {
+    min-height: 300px !important;
+  }
+  
+  .swiper-slide img {
+    max-width: 240px !important;
+    max-height: 200px !important;
+  }
+  
+  .info-foto {
+    padding: 4px 10px !important;
+    gap: 5px !important;
+    margin-top: 10px !important;
+  }
+  
+  .info-foto .nombre {
+    font-size: 0.6em !important;
+  }
+  
+  .info-foto .año {
+    font-size: 0.55em !important;
+  }
+  
+  .info-foto .lugar {
+    font-size: 0.5em !important;
+  }
+  
+  .swiper-button-prev, .swiper-button-next {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  
+  .caracteristicas {
+    gap: 15px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .card h3 {
+    font-size: 0.8em !important;
+  }
+  
+  .card p {
+    font-size: 0.65em !important;
+  }
+  
+  .seccion-carrusel {
+    margin-bottom: 60px !important;
+    padding: 20px 0 !important;
+  }
+  
+  #seccion-ilustraciones,
+  #seccion-renders,
+  #seccion-logos,
+  #seccion-impresos {
+    padding: 30px 15px !important;
+  }
+  
+  /* Senefas en vertical */
+  .senefa {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    min-height: 40px;
+    z-index: 15;
+  }
+  
+  #senefaArriba {
+    top: 10px !important;
+    bottom: auto !important;
+  }
+  
+  #senefaAbajo {
+    bottom: 10px !important;
+    top: auto !important;
+  }
+  
+  .senefaTexto {
+    font-size: 1em !important;
+    letter-spacing: 2px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    padding: 4px 10px !important;
+    background: transparent !important;
+    border-radius: 30px !important;
+  }
+  
+  /* Rompecabezas vertical */
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 1000;
+  }
+  
+  #rompecabezas {
+    position: relative;
+    width: 95vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0;
+    background: #000;
+  }
+  
+  .pieza {
+    width: 102%;
+    height: 102%;
+    margin: -1%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}
+
+/* ===== HORIZONTAL (LANDSCAPE) ===== */
+@media (max-width: 896px) and (orientation: landscape) {
+  #cursor { display: none !important; }
+  
+  body {
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: auto !important;
+  }
+  
+  #contenedor-carruseles {
+    min-height: auto !important;
+    padding: 20px 0 !important;
+  }
+  
+  .senefa2 {
+    position: fixed !important;
+    height: 40px !important;
+  }
+  
+  .senefaTextoMetal {
+    font-size: 1em !important;
+    letter-spacing: 2px !important;
+    white-space: normal !important;
+    padding: 0 10px !important;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.2em !important;
+    padding: 5px 10px !important;
+  }
+  
+  .titulo-seccion::before,
+  .titulo-seccion::after {
+    width: 25px !important;
+  }
+  
+  .swiper-slide {
+    min-height: 250px !important;
+  }
+  
+  .swiper-slide img {
+    max-width: 220px !important;
+    max-height: 180px !important;
+  }
+  
+  .info-foto {
+    padding: 4px 10px !important;
+    gap: 5px !important;
+    margin-top: 8px !important;
+  }
+  
+  .info-foto .nombre {
+    font-size: 0.55em !important;
+  }
+  
+  .info-foto .año {
+    font-size: 0.5em !important;
+  }
+  
+  .info-foto .lugar {
+    font-size: 0.45em !important;
+  }
+  
+  .swiper-button-prev, .swiper-button-next {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  
+  .caracteristicas {
+    gap: 15px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .card h3 {
+    font-size: 0.75em !important;
+  }
+  
+  .card p {
+    font-size: 0.6em !important;
+  }
+  
+  .seccion-carrusel {
+    margin-bottom: 40px !important;
+    padding: 20px 0 !important;
+  }
+  
+  #seccion-ilustraciones,
+  #seccion-renders,
+  #seccion-logos,
+  #seccion-impresos {
+    padding: 25px 15px !important;
+  }
+  
+  /* Senefas en horizontal */
+  .senefa {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    min-height: 40px;
+    z-index: 15;
+    transition: all 0.6s ease-out;
+  }
+  
+  #senefaArriba {
+    top: -200px !important;
+    bottom: auto !important;
+  }
+  
+  #senefaAbajo {
+    bottom: -200px !important;
+    top: auto !important;
+  }
+  
+  .senefaTexto {
+    font-size: 1em !important;
+    letter-spacing: 2px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    padding: 4px 10px !important;
+    background: transparent !important;
+    border-radius: 30px !important;
+  }
+  
+  /* Rompecabezas horizontal */
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 1000;
+  }
+  
+  #rompecabezas {
+    position: relative;
+    width: 85vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0;
+    background: #000;
+  }
+  
+  .pieza {
+    width: 102%;
+    height: 102%;
+    margin: -1%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}
+
+/* ===== TABLETS (PORTRAIT) ===== */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  #cursor { display: none !important; }
+  
+  body {
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: auto !important;
+  }
+  
+  #contenedor-carruseles {
+    min-height: auto !important;
+    padding: 30px 0 !important;
+  }
+  
+  .senefa2 {
+    position: fixed !important;
+    height: 60px !important;
+  }
+  
+  .senefaTextoMetal {
+    font-size: 1.5em !important;
+    letter-spacing: 3px !important;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.8em !important;
+    padding: 8px 15px !important;
+  }
+  
+  .swiper-slide {
+    min-height: 400px !important;
+  }
+  
+  .swiper-slide img {
+    max-height: 300px !important;
+  }
+  
+  .info-foto {
+    padding: 8px 15px !important;
+    gap: 10px !important;
+  }
+  
+  .info-foto .nombre {
+    font-size: 0.7em !important;
+  }
+  
+  .senefa {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    z-index: 15;
+  }
+  
+  #senefaArriba {
+    top: 15px !important;
+    bottom: auto !important;
+  }
+  
+  #senefaAbajo {
+    bottom: 15px !important;
+    top: auto !important;
+  }
+  
+  .senefaTexto {
+    font-size: 1.3em !important;
+    letter-spacing: 3px !important;
+    background: transparent !important;
+  }
+  
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 1000;
+  }
+  
+  #rompecabezas {
+    position: relative;
+    width: 80vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0;
+    background: #000;
+  }
+  
+  .pieza {
+    width: 101%;
+    height: 101%;
+    margin: -0.5%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}
+
+/* ===== TABLETS (LANDSCAPE) ===== */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  #cursor { display: none !important; }
+  
+  body {
+    padding: 0 !important;
+    height: auto !important;
+    overflow: auto !important;
+  }
+  
+  .senefa2 {
+    position: fixed !important;
+    height: 50px !important;
+  }
+  
+  .senefaTextoMetal {
+    font-size: 1.2em !important;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.4em !important;
+  }
+  
+  .swiper-slide {
+    min-height: 300px !important;
+  }
+  
+  .swiper-slide img {
+    max-height: 250px !important;
+  }
+  
+  .senefa {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 15;
+  }
+  
+  #senefaArriba {
+    top: 10px !important;
+    bottom: auto !important;
+  }
+  
+  #senefaAbajo {
+    bottom: 10px !important;
+    top: auto !important;
+  }
+  
+  .senefaTexto {
+    font-size: 1em !important;
+    background: transparent !important;
+  }
+  
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 1000;
+  }
+  
+  #rompecabezas {
+    position: relative;
+    width: 70vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0;
+    background: #000;
+  }
+  
+  .pieza {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 375px) {
+  .swiper-slide img {
+    max-width: 200px !important;
+    max-height: 170px !important;
+  }
+  
+  .info-foto .nombre {
+    font-size: 0.55em !important;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.1em !important;
+  }
+}
+
+/* Correcciones para navegadores antiguos */
+@supports not (backdrop-filter: blur(10px)) {
+  .info-foto {
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .info-foto {
+    backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.swiper-slide img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
