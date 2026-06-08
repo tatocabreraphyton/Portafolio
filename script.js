@@ -1,3 +1,18 @@
+// ==================== CREAR PIEZAS DEL ROMPECABEZAS ====================
+const rompecabezas = document.getElementById("rompecabezas");
+
+for (let fila = 0; fila < 6; fila++) {
+  for (let col = 0; col < 6; col++) {
+    const index = fila * 6 + col + 1;
+    const pieza = document.createElement("img");
+    pieza.src = `img/cuadro${index}.png`;
+    pieza.classList.add("pieza");
+    pieza.style.gridRow = fila + 1;
+    pieza.style.gridColumn = col + 1;
+    rompecabezas.appendChild(pieza);
+  }
+}
+
 // JAVA SCRIPT MASTER
 // ==================== CURSOR PERSONALIZADO - VERSIÓN DEFINITIVA ====================
 const cursor = document.getElementById("cursor");
@@ -495,8 +510,4 @@ detectarNavegadorProblemas();
   document.addEventListener('touchcancel', function() {
     ocultarAro();
   });
-<<<<<<< HEAD
 })();
-=======
-})();
->>>>>>> 73649335109992d7b12628c1499be224a49df3df
