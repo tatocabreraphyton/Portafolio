@@ -744,6 +744,7 @@ body {
     z-index: 1000;
   }
   
+   /* Rompecabezas horizontal */
   #rompecabezas {
     position: relative;
     width: 85vw;
@@ -754,7 +755,7 @@ body {
     gap: 0;
     background: #000;
   }
-  
+
   .pieza {
     width: 102%;
     height: 102%;
