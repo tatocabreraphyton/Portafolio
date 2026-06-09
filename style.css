@@ -730,44 +730,39 @@ body {
     border-radius: 30px !important;
   }
   
-  /* Rompecabezas horizontal */
-  #intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    z-index: 1000;
-  }
-  
-   /* Rompecabezas horizontal */
+ /* Rompecabezas horizontal */
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;    /* centra vertical */
+  justify-content: center;/* centra horizontal */
+  background: #000;
+  z-index: 1000;
+}
+
 #rompecabezas {
-  position: relative;
   width: 85vw;
-  height: 85vw; /* cuadrado perfecto */
+  height: 85vw;           /* cuadrado perfecto */
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 0;
   background: #000;
+  margin: auto;           /* asegura centrado dentro del intro */
 }
 
-  .pieza {
-    width: 102%;
-    height: 102%;
-    margin: -1%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    padding: 0;
-    border: none;
-    background: transparent;
-  }
+.pieza {
+  width: 100% !important; /* cada pieza ocupa su celda */
+  height: 100% !important;
+  margin: 0 !important;
+  object-fit: cover;
+  object-position: center;
 }
+
 
 /* ===== TABLETS (PORTRAIT) ===== */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
