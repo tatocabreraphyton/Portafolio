@@ -745,16 +745,16 @@ body {
   }
   
    /* Rompecabezas horizontal */
-  #rompecabezas {
-    position: relative;
-    width: 85vw;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 0;
-    background: #000;
-  }
+#rompecabezas {
+  position: relative;
+  width: 85vw;
+  height: 85vw; /* cuadrado perfecto */
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0;
+  background: #000;
+}
 
   .pieza {
     width: 102%;
