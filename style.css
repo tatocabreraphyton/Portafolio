@@ -1060,3 +1060,21 @@ body {
     height: 100px !important; /* 🔥 grosor original */
   }
 }
+/* ===== Restaurar animación y grosor senefas ===== */
+.senefaTextoMetal {
+  animation: brilloMetal 3s infinite alternate !important;
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+}
+
+@keyframes brilloMetal {
+  0% { text-shadow: 0 0 10px rgba(255,0,0,0.6); }
+  100% { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
+}
+
+.senefa2 {
+  height: 100px !important; /* 🔥 grosor original */
+  background: linear-gradient(90deg, #b00 0%, #f00 50%, #b00 100%) !important;
+}
