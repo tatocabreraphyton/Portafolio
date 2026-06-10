@@ -1027,3 +1027,14 @@ body {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+/* ===== Restaurar presentación PC ===== */
+@media (min-width: 769px) {
+  #senefaArriba .senefaTexto,
+  #senefaAbajo .senefaTexto {
+    font-size: 3em !important;
+    letter-spacing: 8px !important;
+    white-space: nowrap !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    background: transparent !important;
+  }
+}
