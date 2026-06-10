@@ -479,17 +479,22 @@ body {
   
   .swiper-slide {
     min-height: 300px !important;
+    margin-bottom: 25px !important;   /* 👉 aire entre fotos */
   }
   
   .swiper-slide img {
-    max-width: 240px !important;
-    max-height: 200px !important;
+    width: 100% !important;           /* 👉 ocupa todo el ancho */
+    height: auto !important;          /* 👉 mantiene proporción */
+    max-width: none !important;
+    object-fit: contain !important;   /* 👉 no recorta */
+    margin: 0 auto !important;        /* 👉 centrado */
   }
   
   .info-foto {
     padding: 4px 10px !important;
     gap: 5px !important;
-    margin-top: 10px !important;
+    margin: 10px auto !important;     /* 👉 centrado y aire */
+    width: 90% !important;
   }
   
   .info-foto .nombre {
@@ -533,6 +538,8 @@ body {
   #seccion-impresos {
     padding: 30px 15px !important;
   }
+}
+
   
   /* Senefas en vertical */
   .senefa {
