@@ -1054,3 +1054,9 @@ body {
     background: transparent !important;
   }
 }
+/* ===== Restaurar grosor senefa metálica en PC ===== */
+@media (min-width: 897px) {
+  .senefa2 {
+    height: 100px !important; /* 🔥 grosor original */
+  }
+}
