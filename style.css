@@ -597,132 +597,35 @@ body {
   object-fit: cover;
   object-position: center;
 }
-/* ===== HORIZONTAL (LANDSCAPE) ===== */
-@media (max-width: 896px) and (orientation: landscape) {
-  #cursor { display: none !important; }
-  
-  body {
-    padding: 0 !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-  }
-  
-  #contenedor-carruseles {
-    min-height: auto !important;
-    padding: 20px 0 !important;
-  }
-  
+/* ===== HORIZONTAL (LANDSCAPE) DEFINITIVO ===== */
+@media (max-width: 1024px) and (orientation: landscape) {
   .senefa2 {
     position: fixed !important;
     height: 40px !important;
   }
-  
+
   .senefaTextoMetal {
     font-size: 1em !important;
     letter-spacing: 2px !important;
     white-space: normal !important;
     padding: 0 10px !important;
   }
-  
+
   .titulo-seccion {
     font-size: 1.2em !important;
     padding: 5px 10px !important;
   }
-  
-  .titulo-seccion::before,
-  .titulo-seccion::after {
-    width: 25px !important;
-  }
-  
+
   .swiper-slide {
     min-height: 250px !important;
   }
-  
+
   .swiper-slide img {
     max-width: 220px !important;
     max-height: 180px !important;
   }
-  
-  .info-foto {
-    padding: 4px 10px !important;
-    gap: 5px !important;
-    margin-top: 8px !important;
-  }
-  
-  .info-foto .nombre {
-    font-size: 0.55em !important;
-  }
-  
-  .info-foto .año {
-    font-size: 0.5em !important;
-  }
-  
-  .info-foto .lugar {
-    font-size: 0.45em !important;
-  }
-  
-  .swiper-button-prev, .swiper-button-next {
-    width: 30px !important;
-    height: 30px !important;
-  }
-  
-  .caracteristicas {
-    gap: 15px !important;
-    margin-bottom: 15px !important;
-  }
-  
-  .card h3 {
-    font-size: 0.75em !important;
-  }
-  
-  .card p {
-    font-size: 0.6em !important;
-  }
-  
-  .seccion-carrusel {
-    margin-bottom: 40px !important;
-    padding: 20px 0 !important;
-  }
-  
-  #seccion-ilustraciones,
-  #seccion-renders,
-  #seccion-logos,
-  #seccion-impresos {
-    padding: 25px 15px !important;
-  }
-  
-  /* Senefas en horizontal */
-  .senefa {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-    min-height: 40px;
-    z-index: 15;
-    transition: all 0.6s ease-out;
-  }
-  
-  #senefaArriba {
-    top: -200px !important;
-    bottom: auto !important;
-  }
-  
-  #senefaAbajo {
-    bottom: -200px !important;
-    top: auto !important;
-  }
-  
-  .senefaTexto {
-    font-size: 1em !important;
-    letter-spacing: 2px !important;
-    white-space: normal !important;
-    text-align: center !important;
-    padding: 4px 10px !important;
-    background: transparent !important;
-    border-radius: 30px !important;
-  }
+}
+
   
   /* Rompecabezas horizontal */
   #intro {
