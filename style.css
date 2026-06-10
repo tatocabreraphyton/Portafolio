@@ -439,8 +439,7 @@ body {
   100% { filter: brightness(1); }
 }
 
-/* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== */
-@media (max-width: 768px) and (orientation: portrait) {
+@media (max-width: 896px) and (orientation: landscape) {
   #cursor { display: none !important; }
   
   body {
@@ -457,18 +456,19 @@ body {
   
   .senefa2 {
     position: fixed !important;
-    height: 45px !important;
+    height: 40px !important;
   }
   
   .senefaTextoMetal {
-    font-size: 1.2em !important;
+    font-size: 1em !important;
     letter-spacing: 2px !important;
     white-space: normal !important;
     padding: 0 10px !important;
+    animation: brilloMetal 3s infinite alternate; /* 🔥 brillo metálico */
   }
   
   .titulo-seccion {
-    font-size: 1.3em !important;
+    font-size: 1.2em !important;
     padding: 5px 10px !important;
   }
   
@@ -477,42 +477,32 @@ body {
     width: 25px !important;
   }
   
-  .swiper-slide {
-    min-height: 300px !important;
-    margin-bottom: 25px !important;   /* 👉 aire entre fotos */
-  }
-  
-  .swiper-slide img {
-    width: 100% !important;           /* 👉 ocupa todo el ancho */
-    height: auto !important;          /* 👉 mantiene proporción */
-    max-width: none !important;
-    object-fit: contain !important;   /* 👉 no recorta */
-    margin: 0 auto !important;        /* 👉 centrado */
-  }
-  
-  .info-foto {
+  .senefaTexto {
+    font-size: 1em !important;
+    letter-spacing: 2px !important;
+    white-space: normal !important;
+    text-align: center !important;
     padding: 4px 10px !important;
-    gap: 5px !important;
-    margin: 10px auto !important;     /* 👉 centrado y aire */
-    width: 90% !important;
+    background: transparent !important;
+    border-radius: 30px !important;
+    
+    /* 🔥 restaurar animación fade */
+    animation: fadePuzzle 2s ease-in-out forwards;
   }
   
-  .info-foto .nombre {
-    font-size: 0.6em !important;
+  @keyframes fadePuzzle {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
   }
   
-  .info-foto .año {
-    font-size: 0.55em !important;
+  @keyframes brilloMetal {
+    0% { text-shadow: 0 0 10px rgba(255,0,0,0.6); }
+    100% { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
   }
   
-  .info-foto .lugar {
-    font-size: 0.5em !important;
-  }
-  
-  .swiper-button-prev, .swiper-button-next {
-    width: 30px !important;
-    height: 30px !important;
-  }
+  /* resto de tu bloque horizontal (carrusel, info-foto, etc.) */
+}
+
   
   /* 👉 Ajuste centrado de características en vertical */
   .caracteristicas {
