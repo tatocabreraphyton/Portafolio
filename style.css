@@ -597,15 +597,14 @@ body {
   object-fit: cover;
   object-position: center;
 }
-
-/* ===== HORIZONTAL (LANDSCAPE) ===== */
-@media (max-width: 896px) and (orientation: landscape) {
+/* ===== HORIZONTAL (LANDSCAPE) APARTE ===== */
+@media (max-width: 1024px) and (orientation: landscape) {
   #cursor { display: none !important; }
 
   body {
     padding: 0 !important;
     height: auto !important;
-    min-height: 100vh !important;
+    min-height:  !important;
     overflow: auto !important;
   }
 
@@ -614,19 +613,16 @@ body {
     padding: 20px 0 !important;
   }
 
-  /* 🔧 Senefas metálicas más delgadas en horizontal */
   .senefa2 {
-    height: 3px !important;
+    height: 3px !important; /* franja súper fina */
   }
 
-.senefaTextoMetal {
-  font-size: 0.7em !important;   /* 🔧 letras más pequeñas */
-  letter-spacing: 0.5px !important; /* 🔧 menos separación */
-  line-height: 1em !important;   /* 🔧 altura de línea compacta */
+  .senefaTextoMetal {
+    font-size: 0.7em !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1em !important;
+  }
 }
-}
-
-
 
 
 
@@ -857,13 +853,12 @@ body {
     backdrop-filter: none !important;
     background: rgba(0, 0, 0, 0.85) !important;
   }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .swiper-slide img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 }
 
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.swiper-slide img {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
