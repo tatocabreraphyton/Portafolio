@@ -514,9 +514,23 @@ body {
     height: 30px !important;
   }
   
+  /* 👉 Ajuste centrado de características en vertical */
   .caracteristicas {
-    gap: 15px !important;
+    flex-direction: column !important;   /* apila los textos */
+    align-items: center !important;      /* centra horizontalmente */
+    text-align: center !important;       /* centra el texto */
+    gap: 10px !important;                /* aire entre líneas */
     margin-bottom: 20px !important;
+  }
+  
+  .caracteristicas .card {
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+  
+  .caracteristicas .card h3,
+  .caracteristicas .card p {
+    text-align: center !important;
   }
   
   .card h3 {
@@ -539,6 +553,7 @@ body {
     padding: 30px 15px !important;
   }
 }
+
 
   
   /* Senefas en vertical */
