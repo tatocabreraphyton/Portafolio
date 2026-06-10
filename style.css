@@ -616,15 +616,11 @@ body {
 
   /* 🔧 Senefas metálicas más delgadas en horizontal */
   .senefa2 {
-    position: fixed !important;
-    height: 30px !important;   /* reducido para que no se vea tan ancho */
-    box-shadow: 0 0 8px rgba(255,0,0,0.4) !important;
+    height: 30px !important;
   }
 
   .senefaTextoMetal {
-    font-size: 1em !important; /* texto más compacto */
-    letter-spacing: 1px !important;
-    padding: 0 8px !important;
+    font-size: 1em !important;
   }
 }
 
