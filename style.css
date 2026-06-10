@@ -602,29 +602,30 @@ body {
 /* ===== HORIZONTAL (LANDSCAPE) ===== */
 @media (max-width: 896px) and (orientation: landscape) {
   #cursor { display: none !important; }
-  
+
   body {
     padding: 0 !important;
     height: auto !important;
     min-height: 100vh !important;
     overflow: auto !important;
   }
-  
+
   #contenedor-carruseles {
     min-height: auto !important;
     padding: 20px 0 !important;
   }
-  
+
+  /* 🔧 Ajuste senefas metálicas horizontales */
   .senefa2 {
     position: fixed !important;
-    height: 40px !important;
+    height: 28px !important; /* más delgadas */
+    box-shadow: 0 0 10px rgba(255,0,0,0.4) !important; /* menos brillo */
+    background-size: 100% 100% !important; /* ajusta textura */
   }
-  
+
   .senefaTextoMetal {
-    font-size: 1em !important;
-    letter-spacing: 2px !important;
-    white-space: normal !important;
-    padding: 0 10px !important;
+    font-size: 0.85em !important;
+    letter-spacing: 1px !important;
   }
   
   .titulo-seccion {
