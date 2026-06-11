@@ -728,6 +728,9 @@ body {
     padding: 4px 10px !important;
     background: transparent !important;
     border-radius: 30px !important;
+
+    /* 🔥 restaurar animación en horizontal móviles */
+    animation: fadePuzzle 2s ease-in-out forwards;
   }
   
   /* Rompecabezas horizontal */
@@ -767,6 +770,15 @@ body {
     background: transparent;
   }
 }
+
+/* 🔹 Compatibilidad adicional para horizontales pequeños (640px y similares) */
+@media (max-width: 700px) and (orientation: landscape) {
+  .senefaTexto {
+    animation: fadePuzzle 2s ease-in-out forwards !important;
+    opacity: 1 !important;
+  }
+}
+
 
 /* ===== TABLETS (PORTRAIT) ===== */
 @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
