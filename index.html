@@ -5,15 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Portafolio Interactivo | Tato Cabrera</title>
-  <!-- CSS principal con cache busting -->
-  <link rel="stylesheet" href="style.css?v=3">
-  <!-- Swiper -->
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-  <!-- Fuente Orbitron -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
 
- <!-- Preload de piezas del rompecabezas -->
+  <!-- Preload de piezas del rompecabezas -->
   <link rel="preload" href="img/cuadro1.png" as="image">
   <link rel="preload" href="img/cuadro2.png" as="image">
   <link rel="preload" href="img/cuadro3.png" as="image">
@@ -25,17 +21,14 @@
 <body>
   <div id="cursor"></div>
 
-<!-- Intro con rompecabezas -->
-<div id="intro">
-  <div id="senefaArriba" class="senefa">
-    <span class="senefaTexto">PORTAFOLIO</span>
+  <!-- Intro con rompecabezas -->
+  <div id="intro">
+    <div id="senefaArriba" class="senefa"><span class="senefaTexto">PORTAFOLIO</span></div>
+    <div id="senefaAbajo" class="senefa"><span class="senefaTexto">TATO CABRERA</span></div>
+    <div id="rompecabezas">
+      <img src="img/cuadro1.png" class="pieza" loading="lazy"><img src="img/cuadro2.png" class="pieza" loading="lazy"><img src="img/cuadro3.png" class="pieza" loading="lazy"><img src="img/cuadro4.png" class="pieza" loading="lazy"><img src="img/cuadro5.png" class="pieza" loading="lazy"><img src="img/cuadro6.png" class="pieza" loading="lazy"><img src="img/cuadro7.png" class="pieza" loading="lazy"><img src="img/cuadro8.png" class="pieza" loading="lazy"><img src="img/cuadro9.png" class="pieza" loading="lazy"><img src="img/cuadro10.png" class="pieza" loading="lazy"><img src="img/cuadro11.png" class="pieza" loading="lazy"><img src="img/cuadro12.png" class="pieza" loading="lazy"><img src="img/cuadro13.png" class="pieza" loading="lazy"><img src="img/cuadro14.png" class="pieza" loading="lazy"><img src="img/cuadro15.png" class="pieza" loading="lazy"><img src="img/cuadro16.png" class="pieza" loading="lazy"><img src="img/cuadro17.png" class="pieza" loading="lazy"><img src="img/cuadro18.png" class="pieza" loading="lazy"><img src="img/cuadro19.png" class="pieza" loading="lazy"><img src="img/cuadro20.png" class="pieza" loading="lazy"><img src="img/cuadro21.png" class="pieza" loading="lazy"><img src="img/cuadro22.png" class="pieza" loading="lazy"><img src="img/cuadro23.png" class="pieza" loading="lazy"><img src="img/cuadro24.png" class="pieza" loading="lazy"><img src="img/cuadro25.png" class="pieza" loading="lazy"><img src="img/cuadro26.png" class="pieza" loading="lazy"><img src="img/cuadro27.png" class="pieza" loading="lazy"><img src="img/cuadro28.png" class="pieza" loading="lazy"><img src="img/cuadro29.png" class="pieza" loading="lazy"><img src="img/cuadro30.png" class="pieza" loading="lazy"><img src="img/cuadro31.png" class="pieza" loading="lazy"><img src="img/cuadro32.png" class="pieza" loading="lazy"><img src="img/cuadro33.png" class="pieza" loading="lazy"><img src="img/cuadro34.png" class="pieza" loading="lazy"><img src="img/cuadro35.png" class="pieza" loading="lazy"><img src="img/cuadro36.png" class="pieza" loading="lazy">
+    </div>
   </div>
-  <div id="senefaAbajo" class="senefa">
-    <span class="senefaTexto">TATO CABRERA</span>
-  </div>
-  <div id="rompecabezas"></div>
-</div>
-
 
   <!-- Senefas metálicas -->
   <div id="senefaArriba2" class="senefa2"><div class="senefa-contenido"><span class="senefaTextoMetal">PORTAFOLIO</span></div></div>
@@ -196,3 +189,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
