@@ -957,3 +957,85 @@ for (let fila = 0; fila < 6; fila++) {
     rompecabezas.appendChild(pieza);
   }
 }
+/* ===== Compatibilidad universal para animación ===== */
+.swiper-slide img {
+  transition: transform 0.6s ease-in-out !important;
+  transform-origin: center center !important;
+
+  /* Compatibilidad con navegadores */
+  -webkit-transition: transform 0.6s ease-in-out !important;
+  -moz-transition: transform 0.6s ease-in-out !important;
+  -o-transition: transform 0.6s ease-in-out !important;
+  -ms-transition: transform 0.6s ease-in-out !important;
+
+  -webkit-transform-origin: center center !important;
+  -moz-transform-origin: center center !important;
+  -o-transform-origin: center center !important;
+  -ms-transform-origin: center center !important;
+}
+
+/* Imagen activa más grande */
+.swiper-slide-active img {
+  transform: scale(1.08) !important;
+  z-index: 2 !important;
+
+  /* Compatibilidad */
+  -webkit-transform: scale(1.08) !important;
+  -moz-transform: scale(1.08) !important;
+  -o-transform: scale(1.08) !important;
+  -ms-transform: scale(1.08) !important;
+}
+
+/* Imágenes laterales más pequeñas */
+.swiper-slide-prev img,
+.swiper-slide-next img {
+  transform: scale(0.85) !important;
+  opacity: 0.8 !important;
+  z-index: 1 !important;
+
+  /* Compatibilidad */
+  -webkit-transform: scale(0.85) !important;
+  -moz-transform: scale(0.85) !important;
+  -o-transform: scale(0.85) !important;
+  -ms-transform: scale(0.85) !important;
+}
+/* ===== Animación universal de carrusel ===== */
+.swiper-slide img {
+  transition: transform 0.6s ease-in-out !important;
+  transform-origin: center center !important;
+
+  /* Compatibilidad con todos los navegadores */
+  -webkit-transition: transform 0.6s ease-in-out !important;
+  -moz-transition: transform 0.6s ease-in-out !important;
+  -o-transition: transform 0.6s ease-in-out !important;
+  -ms-transition: transform 0.6s ease-in-out !important;
+
+  -webkit-transform-origin: center center !important;
+  -moz-transform-origin: center center !important;
+  -o-transform-origin: center center !important;
+  -ms-transform-origin: center center !important;
+}
+
+/* Imagen activa más grande */
+.swiper-slide-active img {
+  transform: scale(1.08) !important;
+  z-index: 2 !important;
+
+  -webkit-transform: scale(1.08) !important;
+  -moz-transform: scale(1.08) !important;
+  -o-transform: scale(1.08) !important;
+  -ms-transform: scale(1.08) !important;
+}
+
+/* Imágenes laterales más pequeñas */
+.swiper-slide-prev img,
+.swiper-slide-next img {
+  transform: scale(0.85) !important;
+  opacity: 0.8 !important;
+  z-index: 1 !important;
+
+  -webkit-transform: scale(0.85) !important;
+  -moz-transform: scale(0.85) !important;
+  -o-transform: scale(0.85) !important;
+  -ms-transform: scale(0.85) !important;
+}
