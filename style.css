@@ -771,13 +771,22 @@ body {
   }
 }
 
-/* 🔹 Compatibilidad adicional para horizontales pequeños (640px y similares) */
-@media (max-width: 700px) and (orientation: landscape) {
+/* 🔹 Compatibilidad adicional para horizontales pequeños (Galaxy S5 y similares) */
+@media (max-width: 640px) and (orientation: landscape) {
   .senefaTexto {
+    font-size: 0.9em !important;
+    letter-spacing: 2px !important;
+    text-align: center !important;
+    padding: 4px 8px !important;
+    background: transparent !important;
+    border-radius: 25px !important;
+
+    /* 🔥 animación forzada en horizontales pequeños */
     animation: fadePuzzle 2s ease-in-out forwards !important;
     opacity: 1 !important;
   }
 }
+
 
 
 /* ===== TABLETS (PORTRAIT) ===== */
