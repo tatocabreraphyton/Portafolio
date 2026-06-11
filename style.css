@@ -439,7 +439,7 @@ body {
   100% { filter: brightness(1); }
 }
 
-/* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== *//* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== */
+/* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== */
 @media (max-width: 768px) and (orientation: portrait) {
   #cursor { display: none !important; }
   
@@ -516,36 +516,7 @@ body {
     height: 85vh !important;
     object-fit: cover !important;
   }
-
-  /* 🔥 Centrado de textos debajo de fotos */
-  .info-foto {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-  }
-
-  .info-foto .nombre,
-  .info-foto .año,
-  .info-foto .lugar {
-    text-align: center !important;
-    width: 100% !important;
-    display: block !important;
-  }
-
-  .foto-con-texto {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
 }
-
-
 
 
 /* ===== HORIZONTAL (LANDSCAPE) ===== */
@@ -730,7 +701,6 @@ body {
   0% { text-shadow: 0 0 10px rgba(255,0,0,0.6); }
   100% { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
 }
-
 
 
 
@@ -970,4 +940,19 @@ body {
 .swiper-slide img {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+// ==================== CREAR PIEZAS DEL ROMPECABEZAS ====================
+const rompecabezas = document.getElementById("rompecabezas");
+
+for (let fila = 0; fila < 6; fila++) {
+  for (let col = 0; col < 6; col++) {
+    const index = fila * 6 + col + 1;
+    const pieza = document.createElement("img");
+    pieza.src = `img/cuadro${index}.png`;
+    pieza.classList.add("pieza");
+    pieza.style.gridRow = fila + 1;
+    pieza.style.gridColumn = col + 1;
+    rompecabezas.appendChild(pieza);
+  }
 }
