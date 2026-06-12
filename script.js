@@ -233,29 +233,28 @@ function observarBotones() {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-// Iniciar Swipers (VERSIÓN UNIFICADA Y CORREGIDA)
+// Iniciar Swipers (VERSIÓN CORREGIDA)
 function iniciarSwiper() {
   const config = {
     loop: true,
     effect: 'slide',
     speed: 800,
-    slidesPerView: 1.8,
-    centeredSlides: true,
-    spaceBetween: 15,
+    slidesPerView: 'auto',   // ✅ ahora dinámico
+    centeredSlides: true,    // ✅ centra la foto activa
+    spaceBetween: 20,
     pagination: { clickable: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    breakpoints: { 768: { slidesPerView: 1.8 }, 1024: { slidesPerView: 1.8, spaceBetween: 20 } }
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
   };
-  
+
   const swiper1 = new Swiper('.swiper-ilustraciones', config);
   const swiper2 = new Swiper('.swiper-renders', config);
   const swiper3 = new Swiper('.swiper-logos', config);
   const swiper4 = new Swiper('.swiper-impresos', config);
-  
+
   [swiper1, swiper2, swiper3, swiper4].forEach(sw => {
     agregarEfectoTransicion(sw);
   });
-  
+
   setTimeout(() => {
     agregarDobleOndaBotones();
     forzarLogos();
@@ -264,6 +263,7 @@ function iniciarSwiper() {
     aplicarHoverBotones();
   }, 200);
 }
+
 
 // ==================== ANIMACIONES GSAP INTRO ====================
 const tl = gsap.timeline();
