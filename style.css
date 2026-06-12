@@ -955,3 +955,45 @@ for (let fila = 0; fila < 6; fila++) {
     rompecabezas.appendChild(pieza);
   }
 }
+/* === Efecto carrusel activo en móviles vertical y horizontal === */
+@media (max-width: 896px) {
+  .swiper-slide {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  /* Foto central más grande */
+  .swiper-slide-active {
+    transform: scale(1.15);
+    opacity: 1;
+    z-index: 2;
+  }
+
+  /* Fotos laterales más pequeñas */
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.85);
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  /* Asegura que las imágenes mantengan proporción */
+  .swiper-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+/* Ajuste adicional para landscape */
+@media (orientation: landscape) and (max-width: 896px) {
+  .swiper-slide-active {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
