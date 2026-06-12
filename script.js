@@ -233,7 +233,7 @@ function observarBotones() {
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
-// Iniciar Swipers
+// Iniciar Swipers (VERSIÓN UNIFICADA Y CORREGIDA)
 function iniciarSwiper() {
   const config = {
     loop: true,
