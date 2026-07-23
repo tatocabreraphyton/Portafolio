@@ -543,12 +543,11 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   justify-items: center;
-  align-items: start;
+  align-items: center;
   text-align: center;
 }
 
-.caracteristicas .card:nth-child(3),
-.caracteristicas .card:nth-child(4) {
+.caracteristicas .card:nth-child(3) {
   grid-column: 1 / 3;
   justify-self: center;
 }
