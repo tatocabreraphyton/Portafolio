@@ -537,6 +537,25 @@ body {
     justify-self: center;
   }
 }
+/* 🔧 Corrección de alineación vertical */
+.caracteristicas {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.caracteristicas .card {
+  flex: 1 1 45%;
+  margin: 10px;
+}
+
+.caracteristicas .card:nth-child(3),
+.caracteristicas .card:nth-child(4) {
+  flex-basis: 90%;
+  justify-self: center;
+}
 
 
 /* ===== HORIZONTAL (LANDSCAPE) ===== */
