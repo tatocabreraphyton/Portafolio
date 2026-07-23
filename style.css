@@ -539,24 +539,19 @@ body {
 }
 /* 🔧 Corrección de alineación vertical */
 .caracteristicas {
-  display: flex !important;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
   text-align: center;
-}
-
-.caracteristicas .card {
-  flex: 1 1 45%;
-  margin: 10px;
 }
 
 .caracteristicas .card:nth-child(3),
 .caracteristicas .card:nth-child(4) {
-  flex-basis: 90%;
+  grid-column: 1 / 3;
   justify-self: center;
 }
-
 
 /* ===== HORIZONTAL (LANDSCAPE) ===== */
 @media (max-width: 896px) and (orientation: landscape) {
