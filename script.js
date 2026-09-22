@@ -363,6 +363,73 @@ tl.call(() => {
   }
   iniciarSwiper();
 });
+// ==================== ANIMACIONES GSAP INTRO 2 ====================
+window.addEventListener("load", () => {
+  const preload = document.getElementById("preload");
+  const logo = document.getElementById("logoPreload");
+  const senefaArriba2 = document.getElementById("senefaArriba2");
+  const senefaAbajo2 = document.getElementById("senefaAbajo2");
+
+  if (preload && logo) {
+    // Estado inicial: logo pequeño y oculto
+    gsap.set(logo, { opacity: 0, scale: 0.05 });
+
+    // Animación lenta: logo crece hasta llenar la pantalla
+    gsap.to(logo, {
+      opacity: 1,
+      scale: 2.3,
+      duration: 6.0, // más despacio
+      ease: "power4.out",
+      filter: "drop-shadow(0 0 100px #ff0000)"
+    });
+
+    // Mantener el logo visible más tiempo antes de desvanecer el preload
+    gsap.to(preload, {
+      opacity: 0,
+      duration: 1.5,
+      delay: 9.0, // antes era 2, ahora se espera más
+      ease: "power2.inOut",
+      onComplete: () => {
+        preload.style.display = "none";
+        gsap.to([senefaArriba2, senefaAbajo2], { opacity: 1, duration: 1.2, ease: "power2.out" });
+        // 🔥 Aquí ya no está el correo, se maneja aparte
+      }
+    });
+  }
+});
+
+
+
+// ==================== ANIMACIÓN CHIBI BANNER ====================
+function iniciarChibiBanner() {
+  const tlChibiBanner = gsap.timeline({ repeat: 0, defaults: { ease: "none" } });
+  const frames = document.querySelectorAll("#bannerAnimado img");
+
+  frames.forEach((frame, index) => {
+    // Mostrar frame directamente
+    tlChibiBanner.set(frame, { display: "block", opacity: 1 });
+
+    // Mantenerlo visible un momento
+    tlChibiBanner.to(frame, { duration: 0.2 });
+
+    // Ocultar inmediatamente sin fade
+    // ⚠️ No ocultamos el penúltimo (tato10)
+    if (index < frames.length - 2) {
+      tlChibiBanner.set(frame, { display: "none", opacity: 0 });
+    }
+  });
+
+  // Últimos dos frames quedan visibles: chibi + carta
+  const penultimoFrame = frames[frames.length - 2]; // tato10
+  const ultimoFrame = frames[frames.length - 1];    // tato11
+  tlChibiBanner.set(penultimoFrame, { display: "block", opacity: 1 });
+  tlChibiBanner.set(ultimoFrame, { display: "block", opacity: 1 });
+}
+
+// Llamar a la animación cuando las senefas metálicas ya están visibles
+tl.call(() => {
+  iniciarChibiBanner();
+});
 
 // ==================== FORZAR INICIO EN LA PARTE SUPERIOR ====================
 function forzarInicioEnTop() {
@@ -496,3 +563,395 @@ detectarNavegadorProblemas();
     ocultarAro();
   });
 })();
+
+// ==================== EVENTO CLICK CARTA → CORREO.HTML ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const carta = document.getElementById("tato11");
+  if (carta) {
+    carta.style.cursor = "pointer";
+    carta.addEventListener("click", () => {
+      window.location.href = "correo.html"; // redirige a la nueva página
+    });
+  }
+});
+
+// ================== EFECTO CURSOR + DOBLE ONDA BOTÓN CORREO ==================
+function efectoBotonCorreo() {
+  const cursor = document.getElementById("cursor");
+  const boton = document.querySelector("#formCorreo button");
+
+  if (!boton) return;
+
+  // Hover → cursor blanco
+  boton.addEventListener("mouseenter", () => {
+    if (cursor && window.innerWidth > 768) {
+      cursor.style.borderColor = "#ffffff";
+      cursor.style.boxShadow = "0 0 25px rgba(255,255,255,0.9)";
+    }
+  });
+
+  // Salir → cursor rojo
+  boton.addEventListener("mouseleave", () => {
+    if (cursor && window.innerWidth > 768) {
+      cursor.style.borderColor = "#ff0000";
+      cursor.style.boxShadow = "0 0 15px rgba(255,0,0,0.6)";
+    }
+  });
+
+  // Click → doble onda roja simultánea
+  boton.addEventListener("click", e => {
+    e.stopPropagation();
+    const rect = boton.getBoundingClientRect();
+
+    // Primera onda (más pequeña)
+    crearOnda(rect.left + rect.width / 2, rect.top + rect.height / 2, 35, "rgba(255,0,0,0.8)");
+
+    // Segunda onda (más grande y más difusa)
+    setTimeout(() => {
+      crearOnda(rect.left + rect.width / 2, rect.top + rect.height / 2, 55, "rgba(255,50,50,0.6)");
+    }, 80);
+  });
+}
+
+// ==================== AVISO CENTRAL EN ÓVALO ====================
+function mostrarAvisoWin(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂"; // Carita llorando de risa
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5em;
+    padding: 40px 80px;
+    border-radius: 50%;   /* 🔴 óvalo */
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+    animation: aparecer 0.3s ease-out;
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 3000);
+}
+
+// Detectar combinaciones prohibidas en Windows
+document.addEventListener("keydown", function(e) {
+  // PrintScreen
+  if (e.key === "PrintScreen" || e.keyCode === 44) {
+    e.preventDefault();
+    mostrarAvisoWin("⚠️ Captura bloqueada - Propiedad de Tato Cabrera");
+  }
+  // Ctrl+C
+  if (e.ctrlKey && e.key.toLowerCase() === "c") {
+    e.preventDefault();
+    mostrarAvisoWin("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+  }
+  // Ctrl+X
+  if (e.ctrlKey && e.key.toLowerCase() === "x") {
+    e.preventDefault();
+    mostrarAvisoWin("⚠️ Corte bloqueado - Propiedad de Tato Cabrera");
+  }
+  // Ctrl+V
+  if (e.ctrlKey && e.key.toLowerCase() === "v") {
+    e.preventDefault();
+    mostrarAvisoWin("⚠️ Pegado bloqueado - Propiedad de Tato Cabrera");
+  }
+});
+// ==================== AVISO CENTRAL EN ÓVALO macOS ====================
+function mostrarAvisoMac(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂"; // Carita llorando de risa
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5em;
+    padding: 40px 80px;
+    border-radius: 50%;   /* óvalo */
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 3000);
+}
+
+// Detectar Shift + Command + 3
+document.addEventListener("keydown", function(e) {
+  if (e.metaKey && e.shiftKey && e.key === "3") {
+    e.preventDefault();
+    mostrarAvisoMac("⚠️ Captura bloqueada - Propiedad de Tato Cabrera");
+  }
+});
+
+// ==================== AVISO CENTRAL EN ÓVALO Linux ====================
+function mostrarAvisoLinux(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂"; // Carita llorando de risa
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5em;
+    padding: 40px 80px;
+    border-radius: 50%;   /* óvalo */
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 3000);
+}
+
+// Detectar PrintScreen y combinaciones en Linux
+document.addEventListener("keydown", function(e) {
+  // PrintScreen solo
+  if (e.key === "PrintScreen" || e.keyCode === 44) {
+    e.preventDefault();
+    mostrarAvisoLinux("⚠️ Captura bloqueada - Propiedad de Tato Cabrera");
+  }
+  // Shift + PrintScreen
+  if (e.shiftKey && (e.key === "PrintScreen" || e.keyCode === 44)) {
+    e.preventDefault();
+    mostrarAvisoLinux("⚠️ Captura parcial bloqueada - Propiedad de Tato Cabrera");
+  }
+  // Alt + PrintScreen
+  if (e.altKey && (e.key === "PrintScreen" || e.keyCode === 44)) {
+    e.preventDefault();
+    mostrarAvisoLinux("⚠️ Captura de ventana bloqueada - Propiedad de Tato Cabrera");
+  }
+});
+// ==================== ANDROID ====================
+function mostrarAvisoAndroid(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂";
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2em;
+    padding: 30px 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 2500);
+}
+
+// Detectar long press en Android
+let touchTimer;
+document.addEventListener("touchstart", function() {
+  touchTimer = setTimeout(() => {
+    mostrarAvisoAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+  }, 600);
+});
+document.addEventListener("touchend", function() {
+  clearTimeout(touchTimer);
+});
+
+// Bloquear menú contextual Android
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+  mostrarAvisoAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+});
+
+
+// ==================== APPLE iOS ====================
+function mostrarAvisoIOS(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂";
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2em;
+    padding: 30px 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 2500);
+}
+
+// Detectar long press en iOS
+let iosTouchTimer;
+document.addEventListener("touchstart", function() {
+  iosTouchTimer = setTimeout(() => {
+    mostrarAvisoIOS("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+  }, 600);
+});
+document.addEventListener("touchend", function() {
+  clearTimeout(iosTouchTimer);
+});
+
+// Bloquear menú contextual iOS
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+  mostrarAvisoIOS("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+});
+
+// ==================== DETECCIÓN DE PLATAFORMA ====================
+const ua = navigator.userAgent.toLowerCase();
+const esAndroid = ua.includes("android");
+const esIOS = /iphone|ipad|ipod/.test(ua);
+
+// ==================== ANDROID ====================
+if (esAndroid) {
+  function mostrarAvisoAndroid(mensaje) {
+    const aviso = document.createElement("div");
+    aviso.textContent = mensaje + " 😂";
+    aviso.style.cssText = `
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.85);
+      color: #ff0000;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 2em;
+      padding: 30px 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(255,0,0,0.9);
+      z-index: 99999;
+      text-align: center;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(255,0,0,0.8);
+    `;
+    document.body.appendChild(aviso);
+    setTimeout(() => aviso.remove(), 2500);
+  }
+
+  let touchTimer;
+  document.addEventListener("touchstart", function() {
+    touchTimer = setTimeout(() => {
+      mostrarAvisoAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+    }, 600);
+  });
+  document.addEventListener("touchend", function() {
+    clearTimeout(touchTimer);
+  });
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+    mostrarAvisoAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+  });
+}
+
+// ==================== APPLE iOS ====================
+if (esIOS) {
+  function mostrarAvisoIOS(mensaje) {
+    const aviso = document.createElement("div");
+    aviso.textContent = mensaje + " 😂";
+    aviso.style.cssText = `
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.85);
+      color: #ff0000;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 2em;
+      padding: 30px 60px;
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(255,0,0,0.9);
+      z-index: 99999;
+      text-align: center;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(255,0,0,0.8);
+    `;
+    document.body.appendChild(aviso);
+    setTimeout(() => aviso.remove(), 2500);
+  }
+
+  let iosTouchTimer;
+  document.addEventListener("touchstart", function() {
+    iosTouchTimer = setTimeout(() => {
+      mostrarAvisoIOS("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+    }, 600);
+  });
+  document.addEventListener("touchend", function() {
+    clearTimeout(iosTouchTimer);
+  });
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+    mostrarAvisoIOS("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+  });
+}
+// ==================== TABLETS ANDROID ====================
+function mostrarAvisoTabletAndroid(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂";
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.2em;
+    padding: 40px 80px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 2500);
+}
+
+// Detectar long press en tablets Android
+let tabletTouchTimer;
+document.addEventListener("touchstart", function() {
+  tabletTouchTimer = setTimeout(() => {
+    mostrarAvisoTabletAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+  }, 600);
+});
+document.addEventListener("touchend", function() {
+  clearTimeout(tabletTouchTimer);
+});
+
+// Bloquear menú contextual en tablets Android
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+  mostrarAvisoTabletAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+});
+
+

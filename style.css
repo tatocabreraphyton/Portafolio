@@ -1,13 +1,21 @@
 /* ===== CSS3 ===== */
 body {
   margin: 0;
-  background: #111;
+  background: #000;   /* negro desde el inicio */
   color: #fff;
   font-family: 'Orbitron', sans-serif;
   height: 100vh;
-  overflow: hidden;
   padding: 100px 0;
   box-sizing: border-box;
+  overflow: hidden;   /* 🚨 bloquea scroll global */
+}
+
+/* El scroll se activa únicamente en el área de carruseles */
+#contenedor-carruseles {
+  height: auto !important;
+  max-height: calc(100vh - 100px) !important; /* ajusta según senefas */
+  overflow-y: auto !important;                /* ✅ scroll vertical solo aquí */
+  overflow-x: hidden !important;
 }
 
 #cursor {
@@ -68,12 +76,1291 @@ body {
 #senefaArriba2 { top: 0; left: 0; }
 #senefaAbajo2 { bottom: 0; left: 0; }
 
-.senefa-contenido {
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
+#senefaArriba2 .senefa-contenido,
+#senefaAbajo2 .senefa-contenido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/*======================================================*/
+/*===== CHIBI POSICIONAMIENTO SOBRE SENEFA PC ========== */
+
+#bannerAnimado {
+  position: fixed !important;   /* flotando independiente */
+      transform: translate(-50%, -50%) scale(1.0);
+  top: 69px;          /* distancia desde arriba */
+  left: 75%;         /* ajusta horizontalmente */
+  z-index: 10005;    /* 🔥 encima de las senefas */
+  width: 130px;      /* ancho fijo del chibi */
+  height: 130px;     /* alto fijo */
 }
 
+#bannerAnimado img {
+  position: absolute; /* todas las imágenes se apilan */
+  top: 0;
+  left: 0;
+  height: 101px;
+  display: none;      /* ocultas al inicio */
+}
+
+/* ✉️ Efecto especial para la carta */
+#tato11 {
+  animation: cartaBrillo 2s infinite alternate;
+  cursor: pointer;
+}
+
+@keyframes cartaBrillo {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.4));
+  }
+  100% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255,0,0,0.8));
+  }
+}
+
+/* ================================================================
+   ===== CHIBI - SOLO VERTICALES (320px en adelante) =====
+   ================================================================ */
+
+/* 🔹 MÓVILES 320px (Galaxy A2 Core, LG K4) */
+@media (min-width: 320px) and (max-width: 375px) and (orientation: portrait) {
+  #bannerAnimado {
+  position: fixed !important;   /* flotando independiente */
+      transform: translate(-50%, -50%) scale(0.3);
+  top: 35px;          /* distancia desde arriba */
+  left: 80%;         /* ajusta horizontalmente */
+  z-index: 10005;    /* 🔥 encima de las senefas */
+  width: 130px;      /* ancho fijo del chibi */
+  height: 130px;     /* alto fijo */
+}
+}
+
+/* 344px - Galaxy Z Fold, Moto E6 */
+@media (min-width: 331px) and (max-width: 350px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 79% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 70px !important;
+    height: 70px !important;
+  }
+  #bannerAnimado img { height: 54px !important; }
+}
+
+/* 360px - Huawei P30 Lite */
+@media (min-width: 351px) and (max-width: 370px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 78% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 75px !important;
+    height: 75px !important;
+  }
+  #bannerAnimado img { height: 58px !important; }
+}
+
+/* 375px - iPhone SE, iPhone 6-8 */
+@media (min-width: 371px) and (max-width: 380px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 79% !important;
+    transform: translate(-50%, -50%) scale(0.5) !important;
+    width: 80px !important;
+    height: 80px !important;
+  }
+  #bannerAnimado img { height: 62px !important; }
+}
+
+/* 384px - Samsung S3 Mini, Moto G Play */
+@media (min-width: 381px) and (max-width: 388px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 80% !important;
+    transform: translate(-50%, -50%) scale(0.45) !important;
+    width: 85px !important;
+    height: 85px !important;
+  }
+  #bannerAnimado img { height: 66px !important; }
+}
+
+/* 390px - iPhone 12 */
+@media (min-width: 389px) and (max-width: 392px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 79% !important;
+    transform: translate(-50%, -50%) scale(0.44) !important;
+    width: 88px !important;
+    height: 88px !important;
+  }
+  #bannerAnimado img { height: 68px !important; }
+}
+
+/* 393px - Vivo Y20, Redmi Note 11, Poco X3 Pro */
+@media (min-width: 393px) and (max-width: 399px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 79% !important;
+    transform: translate(-50%, -50%) scale(0.43) !important;
+    width: 90px !important;
+    height: 90px !important;
+  }
+  #bannerAnimado img { height: 70px !important; }
+}
+
+/* 412px - OnePlus 8T, Realme 8 Pro, Galaxy S20, Pixel 5 */
+@media (min-width: 400px) and (max-width: 420px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 33px !important;
+    left: 82% !important;
+    transform: translate(-50%, -50%) scale(0.45) !important;
+    width: 95px !important;
+    height: 95px !important;
+  }
+  #bannerAnimado img { height: 74px !important; }
+}
+
+/* 414px - iPhone Plus, Galaxy Note, iPhone XR */
+@media (min-width: 413px) and (max-width: 420px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 34px !important;
+    left: 82% !important;
+    transform: translate(-50%, -50%) scale(0.46) !important;
+    width: 96px !important;
+    height: 96px !important;
+  }
+  #bannerAnimado img { height: 75px !important; }
+}
+
+/* 430px - iPhone 12-14 */
+@media (min-width: 421px) and (max-width: 436px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 36px !important;
+    left: 77% !important;
+    transform: translate(-50%, -50%) scale(0.50) !important;
+    width: 100px !important;
+    height: 100px !important;
+  }
+  #bannerAnimado img { height: 78px !important; }
+}
+
+/* 440px - iPhone 16 Pro */
+@media (min-width: 437px) and (max-width: 450px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 33px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.50) !important;
+    width: 105px !important;
+    height: 105px !important;
+  }
+  #bannerAnimado img { height: 82px !important; }
+}
+
+/* 540px - Surface Duo */
+@media (min-width: 451px) and (max-width: 560px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 33px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.55) !important;
+    width: 110px !important;
+    height: 110px !important;
+  }
+  #bannerAnimado img { height: 85px !important; }
+}
+
+/* 576px - Kalley Black S */
+@media (min-width: 561px) and (max-width: 590px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 32px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.48) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+
+/* 601px - Phablets (Galaxy Note, Xiaomi Mi Max) */
+@media (min-width: 591px) and (max-width: 650px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 34px !important;          /* ❌ ERROR: falta número */
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.5) !important;
+    width: 120px !important;
+    height: 120px !important;
+  }
+  #bannerAnimado img { height: 93px !important; }
+}
+
+/* 712px - Galaxy Z Fold vertical */
+@media (min-width: 651px) and (max-width: 730px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 50px !important;
+    left: 86% !important;
+    transform: translate(-50%, -50%) scale(0.65) !important;
+    width: 125px !important;
+    height: 125px !important;
+  }
+  #bannerAnimado img { height: 97px !important; }
+}
+
+/* 720px - Galaxy A22, Redmi Note 10 */
+@media (min-width: 713px) and (max-width: 750px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 35px !important;
+    left: 74% !important;
+    transform: translate(-50%, -50%) scale(0.45) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+
+/* 853px - Asus Zenbook Fold */
+@media (min-width: 781px) and (max-width: 900px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 41px !important;
+    left: 75% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 130px !important;
+    height: 130px !important;
+  }
+  #bannerAnimado img { height: 101px !important; }
+}
+
+/* 912px - Surface Duo 7 Pro */
+@media (min-width: 901px) and (max-width: 950px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 42px !important;
+    left: 75% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 132px !important;
+    height: 132px !important;
+  }
+  #bannerAnimado img { height: 102px !important; }
+}
+
+/* 1080px - Kalley Black 3 */
+@media (min-width: 951px) and (max-width: 1200px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 71px !important;
+    left: 77% !important;
+    transform: translate(-50%, -50%) scale(0.85) !important;
+    width: 135px !important;
+    height: 135px !important;
+  }
+  #bannerAnimado img { height: 105px !important; }
+}
+
+/* 1201px - Tablets grandes y PC */
+@media (min-width: 1201px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 69px !important;
+    left: 75% !important;
+    transform: translate(-50%, -50%) scale(1.0) !important;
+    width: 130px !important;
+    height: 130px !important;
+  }
+  #bannerAnimado img { height: 101px !important; }
+}
+/*===============================================================*/
+/*========================HORIZONTAL PANTALLAS===================*/
+/*===============================================================*/
+
+/* ================================================================
+   ===== CHIBI - CELULAR MUY PEQUEÑO HORIZONTAL (IPHONE 4: 480x320) =====
+   ================================================================ */
+@media (min-width: 320px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 61px ;
+    left: 82% ;
+    transform: translate(-50%, -50%) scale(0.88) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+@media (min-width: 320px) and (min-width: 658px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 61px ;
+    left: 82% ;
+    transform: translate(-50%, -50%) scale(0.88) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+@media (min-width: 344px) and (min-width: 882px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 70px ;
+    left: 82% ;
+    transform: translate(-50%, -50%) scale(0.88) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+@media (min-width: 360px) and (min-width: 780px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 73px ;
+    left: 82% ;
+    transform: translate(-50%, -50%) scale(0.88) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+@media (min-width: 576px) and (min-width: 1152px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 160px ;
+    left: 82% ;
+    transform: translate(-50%, -50%) scale(2.5) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+/*============================================================*/
+/*==================== CHIBI TABLETS VERTICALES===============*/
+/*============================================================*/
+
+/* Tablets genéricas → 600 × 1024 px */
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+  /* estilos específicos para tablets genéricas en vertical */
+}
+/* Samsung Galaxy Tab S4 → 712 × 1138 px (vertical) */
+@media (min-width: 712px) and (max-width: 1138px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 34px !important;
+    left: 74% !important;
+    transform: translate(-50%, -50%) scale(0.5) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+
+/* iPad mini 7.9 → 768 × 1024 px */
+/* iPad mini 7.9 → 768 × 1024 px */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 34px !important;
+    left: 74% !important;
+    transform: translate(-50%, -50%) scale(0.55) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+/* Amazon Fire HD 10 → 800 × 1200 px */
+@media (min-width: 800px) and (max-width: 1200px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 75px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+/* Microsoft Surface Pro 9 → 1280 × 1920 px (vertical) */
+@media (min-width: 800px) and (max-width: 1280px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 41px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+/* iPad 10.2″ / 10ª gen → 810 × 1080 px (vertical) */
+/* iPad Pro 13 M4 → 1032 × 1376 px */
+@media (min-width: 810px) and (max-width: 1080px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 45px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(0.6) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+/* iPad Pro 13 M4 → 1032 × 1376 px */
+@media (min-width: 1032px) and (max-width: 1376px) and (orientation: portrait) {
+  #bannerAnimado {
+    top: 70px !important;
+    left: 76% !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+
+/*============================================================*/
+/*==================== CHIBI TABLETS HORIZONTALES===============*/
+/*============================================================*/
+/* iPad mini 8.3 → 744 × 1133 px */
+@media (min-width: 744px) and (min-width: 1113px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 160px ;
+    left: 83% ;
+    transform: translate(-50%, -50%) scale(2.5) ;
+    width: 130px ;
+    height: 130px ;
+  }
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  #bannerAnimado {
+    top: 34px !important;
+    left: 74% !important;
+    transform: translate(-50%, -50%) scale(0.55) !important;
+    width: 115px !important;
+    height: 115px !important;
+  }
+  #bannerAnimado img { height: 89px !important; }
+}
+
+/* iPad 10.2″ / 10ª gen → 810 × 1080 px */
+@media (min-width: 810px) and (max-width: 1080px) and (orientation: landscape) {
+  #bannerAnimado {
+    /* Posición y tamaño */
+    top: 160px;
+    left: 84%;
+    transform: translate(-50%, -50%) scale(2.5); /* agrandado */
+    width: 130px;
+    height: 130px;
+  }
+
+  #bannerAnimado img {
+    /* Ajuste de la imagen interna */
+    height: 43px;
+  }
+}
+
+/*==============================================*/
+/*===========PRELOADS CEL VERTICALES=========*/
+/*==============================================*/
+
+/*============================== PRELOADS ==============================*/
+
+/*=============== PRELOAD AJUSTE 320x480 iPhone 4 ================== */
+@media (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+  
+#touch-ring {
+  position: fixed !important;
+  overflow: hidden !important;   /* ✅ recorta cualquier exceso */
+  max-width: 100vw !important;   /* ✅ nunca se sale del ancho */
+  max-height: 100vh !important;  /* ✅ nunca se sale del alto */
+  box-shadow: none !important;   /* ✅ elimina sombra que desborda */
+}
+
+  html, body {
+  height: 100vh;          /* ✅ ocupa toda la pantalla */
+  width: 100vw;           /* ✅ ocupa todo el ancho */
+  margin: 0;              /* ✅ elimina márgenes */
+  padding: 0;             /* ✅ elimina padding */
+  overflow: hidden;       /* ✅ bloquea scroll vertical y horizontal */
+}
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;     /* ✅ evita que genere scroll */
+  }
+
+  #logoPreload {
+    width: 150px !important;         /* ✅ tamaño del logo */
+    margin: 0 auto !important;       /* ✅ centra horizontalmente */
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+
+  body#paginaCorreo {
+    height: 100vh !important;
+    overflow: hidden !important;     /* ✅ bloquea scroll vertical */
+    background: #000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Extra: senefas y marco también sin desbordar */
+  #senefaArriba2, #senefaAbajo2, .marco {
+    overflow: hidden !important;     /* ✅ recorta cualquier exceso */
+    max-height: 100vh !important;    /* ✅ nunca pasan del viewport */
+    
+  
+  }
+}
+
+/* móviles pequeños y medianos (320–851px) */
+
+@media (min-width: 320px) and (max-width: 851px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 10px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+/* móviles de 499 (499–851px) */
+@media (min-width: 320px) and (max-width: 663px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 190px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+/* Surface Duo (540–720px) */
+@media (min-width: 540px) and (max-width: 720px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 265px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+
+/* Kalley Black S (576–1152px) */
+@media (min-width: 576px) and (max-width: 1152px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 300px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+
+/* Phablets (601–712px) */
+@media (min-width: 601px) and (max-width: 712px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 320px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+/* dispositivos de 768 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 450px !important;   /* tamaño del logo */
+    margin: 0 auto !important; /* centrado */
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+
+/* Galaxy A22 / Redmi Note 10 (720–1600px) */
+@media (min-width: 720px) and (max-width: 1600px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 330px !important;   /* tamaño del logo */
+    margin: 0 auto !important; /* centrado */
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+
+/* Kalley Black Z1 (1601–1640px) */
+@media (min-width: 1601px) and (max-width: 1640px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 360px !important;   /* tamaño del logo */
+    margin: 0 auto !important; /* centrado */
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+/* Asus Zenbook Fold (853–1280px) */
+@media (min-width: 853px) and (max-width: 1280px) and (orientation: portrait) {
+  #touch-ring {
+    position: fixed !important;
+    overflow: hidden !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    box-shadow: none !important;
+  }
+
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #logoPreload {
+    width: 480px !important;   /* tamaño del logo */
+    margin: 0 auto !important; /* centrado */
+    display: block !important;
+    filter: drop-shadow(0 0 20px red) !important;
+  }
+}
+/*==================================================================*/
+/*=============== PRELOAD HORIZONTAL===========================*/
+/*=================================================================*/
+/* ==============================================================
+   ===== PASO 1: PRELOAD HORIZONTAL - BASE =====
+   ============================================================== */
+
+@media (orientation: landscape) {
+  #preload {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #000 !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  #logoPreload {
+    display: block !important;
+    margin: 0 auto !important;
+    filter: drop-shadow(0 0 40px red) !important;
+    object-fit: contain !important;
+    height: 57vh !important;
+    width: auto !important;
+    max-width: 85vw !important;
+  }
+}
+/*=============================================================*/
+
+/* ================== CORREO VERTICAL CELULARES =============== */
+/*=============================================================*/
+/* 320 × 480 – iPhone 4 / Galaxy A2 Core / LG K4 */
+@media (min-width: 320px) and (max-width: 480px) and (orientation: portrait) {
+
+  /* 🔹 FORMULARIO PRINCIPAL */
+  #formCorreo {
+    width: 100% !important;          /* ancho total relativo */
+    max-width: 110px !important;     /* límite máximo del formulario */
+    margin: 0 auto !important;       /* centra horizontalmente */
+    margin-top: 5vh !important;     /* baja el formulario dentro del marco */
+    gap: 5px !important;             /* 🔧 reduce espacio entre bloques (label + caja) */
+  }
+
+  /* 🔹 LABELS (textos arriba de las cajas) */
+  #formCorreo label {
+    font-size: 0.9em !important;     /* tamaño de letra del label */
+    margin-bottom: -5px !important;  /* 🔧 acerca el texto a la caja */
+    letter-spacing: 1px !important;  /* separación entre letras */
+  }
+
+  /* 🔹 CAMPOS DE TEXTO */
+  #formCorreo input,
+  #formCorreo textarea {
+    font-size: 0.9em !important;     /* tamaño de letra dentro de la caja */
+    padding: 3px !important;         /* espacio interno más compacto */
+    margin-top: 3px !important;     /* 🔧 acerca la caja al label */
+    left: 58px !important;           /* mantiene alineación horizontal */
+  }
+
+  /* 🔹 BOTÓN ROJO */
+  #formCorreo button {
+    font-size: 0.9em !important;     /* tamaño de letra del botón */
+    padding: 4px 0 !important;       /* espacio interno vertical */
+    width: 100% !important;           /* ancho relativo del botón */
+    margin: 6px auto !important;     /* 🔧 separa del campo anterior */
+    left: 57.5px !important;           /* mantiene centrado */
+  }
+
+  /* 🔹 MARCO GENERAL */
+.marco1 {
+    width: 600px !important;
+    height: 400px !important;
+    margin-top: -150px;
+    left: -30% !important;
+    transform: scaleX(1.1) scaleY(1.2) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+
+
+  /* 🔹 TÍTULO DEL FORMULARIO */
+  #correo h2 {
+    font-size: 0.9em !important;     /* tamaño del título */
+    margin-top: 5vh !important;    /* espacio arriba del título */
+    margin-bottom: 0px !important;   /* espacio debajo del título */
+    letter-spacing: 1.5px !important;
+    text-align: center;              /* centra el texto */
+    position: relative;              /* permite ajuste fino */
+    top: -8px !important;            /* 🔧 mueve el título independiente del form */
+  }
+}
+/*========================================================================================================*/
+/*====RE ESCALA DE CORREO DE KALLEY BLACK 3 1080 X 2640============*/
+/*========================================================================================================*/
+/* Kalley Black 3 – vertical */
+/* Ajuste general para pantallas grandes */
+@media (min-width: 1080px) and (orientation: portrait) {
+  #correo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+
+    #formCorreo {
+      transform: translateY(-4.5%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      z-index: 2;
+      scale: calc(1.05);
+      margin-top: 100px;
+    }
+  /* Labels encima de las cajas */
+  #formCorreo label {
+    font-size: 2.1em !important;   /* ✅ más grandes */
+    margin-bottom: 6px;
+  }
+
+  /* Inputs y textarea */
+  #formCorreo input,
+  #formCorreo textarea {
+    font-size: 1.3em !important;   /* ✅ texto más grande dentro */
+    padding: 14px !important;      /* ✅ más espacio interno */
+    border-radius: 16px;
+  }
+
+  /* Botón rojo */
+  #formCorreo button {
+    font-size: 2.5em !important;   /* ✅ texto más grande */
+    padding: 8px 20px !important; /* ✅ más alto y ancho */
+    border-radius: 8px;
+    margin-top: 25px;
+  }
+
+  /* Marco con GIF */
+  .marco {
+    max-width: 800px !important;
+  }
+
+  .marco img {
+    width: 105% !important;
+    height: auto !important;
+  }
+
+  /* Título */
+  #correo h2 {
+    font-size: 2.6em !important;
+    margin-bottom: 25px;
+    margin-top: -60px;
+  }
+}
+/*=========================================================*/
+/*======================CORREO HORIZONTALES=================*/
+
+/* ================== CORREO VERTICAL CELULARES =============== */
+/*=============================================================*/
+/* 320 × 480 – iPhone 4 / Galaxy A2 Core / LG K4 */
+@media (min-width: 320px) and (max-height: 480px) and (orientation: landscape) {
+
+  /* 🔹 FORMULARIO PRINCIPAL */
+  #formCorreo {
+    width: 100% !important;          /* ancho total relativo */
+    max-width: 170px !important;     /* límite máximo del formulario */
+    margin: 0 auto !important;       /* centra horizontalmente */
+    margin-top: 5vh !important;     /* baja el formulario dentro del marco */
+    gap: 5px !important;             /* 🔧 reduce espacio entre bloques (label + caja) */
+    transform: scaleX(1) scaleY(0.8) !important;
+    transform-origin: center center !important;
+    position: relative !important;
+    top: -5px !important;
+
+  }
+
+  /* 🔹 LABELS (textos arriba de las cajas) */
+  #formCorreo label {
+    font-size: 0.9em !important;     /* tamaño de letra del label */
+    margin-bottom: -5px !important;  /* 🔧 acerca el texto a la caja */
+    letter-spacing: 1px !important;  /* separación entre letras */
+  }
+
+  /* 🔹 CAMPOS DE TEXTO */
+  #formCorreo input,
+  #formCorreo textarea {
+    font-size: 0.9em !important;     /* tamaño de letra dentro de la caja */
+    padding: 3px !important;         /* espacio interno más compacto */
+    margin-top: 3px !important;     /* 🔧 acerca la caja al label */
+    left: 58px !important;           /* mantiene alineación horizontal */
+  }
+
+  /* 🔹 BOTÓN ROJO */
+  #formCorreo button {
+    font-size: 0.9em !important;     /* tamaño de letra del botón */
+    padding: 4px 0 !important;       /* espacio interno vertical */
+    width: 100% !important;           /* ancho relativo del botón */
+    margin: 6px auto !important;     /* 🔧 separa del campo anterior */
+    left: 57.5px !important;           /* mantiene centrado */
+  }
+
+  /* 🔹 MARCO GENERAL */
+ .marco1 {
+    width: 600px !important;
+    height: 400px !important;
+          
+
+        top: 110px;
+
+    margin-top: -62px !important;    /* ✅ centra verticalmente entre las senefas */
+    left: 40% !important;
+    transform: scaleX(1.6) scaleY(1.4) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+
+
+
+  /* 🔹 TÍTULO DEL FORMULARIO */
+  #correo h2 {
+    font-size: 0.9em !important;     /* tamaño del título */
+    margin-top: 5vh !important;    /* espacio arriba del título */
+    margin-bottom: 0px !important;   /* espacio debajo del título */
+    letter-spacing: 1.5px !important;
+    text-align: center;              /* centra el texto */
+    position: relative;              /* permite ajuste fino */
+    top: 35px !important;            /* 🔧 mueve el título independiente del form */
+  }
+}
+
+@media (min-width: 600px) and (max-height: 800px) and (orientation: landscape) {
+
+/* 🔹 MARCO GENERAL */
+ .marco1 {
+    width: 600px !important;
+    height: 400px !important;
+          
+
+        margin-top: -141px;
+
+  
+    left: -35% !important;
+    transform: scaleX(2) scaleY(1.7) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+}
+@media (min-width: 600px) and (max-height: 1024px) and (orientation: landscape) {
+
+/* 🔹 MARCO GENERAL */
+ .marco1 {
+    width: 600px !important;
+    height: 400px !important;
+          
+
+        margin-top: -141px;
+
+  
+    left: 5% !important;
+    transform: scaleX(2) scaleY(1.7) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+}
+
+
+
+@media (min-width: 412px) and (max-height: 869px) and (orientation: landscape) {
+
+/* 🔹 MARCO GENERAL */
+ .marco1 {
+    width: 600px !important;
+    height: 400px !important;
+          
+
+        margin-top: -141px;
+
+  
+    left: -30% !important;
+    transform: scaleX(2) scaleY(1.7) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+}
+  
+@media screen and (min-width:360px) and (max-width:740px) and (orientation: landscape) {
+
+    /* ============================================================
+       FORMULARIO
+       ============================================================ */
+   #formCorreo {
+    width: 100% !important;          /* ancho total relativo */
+    max-width: 170px !important;     /* límite máximo del formulario */
+    margin: 0 auto !important;       /* centra horizontalmente */
+    margin-top: 5vh !important;     /* baja el formulario dentro del marco */
+    gap: 5px !important;             /* 🔧 reduce espacio entre bloques (label + caja) */
+    transform: scaleX(1) scaleY(0.8) !important;
+    transform-origin: center center !important;
+    position: relative !important;
+    top: -5px !important;
+
+  }
+
+  /* 🔹 LABELS (textos arriba de las cajas) */
+  #formCorreo label {
+    font-size: 0.9em !important;     /* tamaño de letra del label */
+    margin-bottom: -5px !important;  /* 🔧 acerca el texto a la caja */
+    letter-spacing: 1px !important;  /* separación entre letras */
+  }
+
+    /* ============================================================
+       TITULO
+       ============================================================ */
+  #correo h2 {
+    font-size: 0.9em !important;     /* tamaño del título */
+    margin-top: 5vh !important;    /* espacio arriba del título */
+    margin-bottom: 0px !important;   /* espacio debajo del título */
+    letter-spacing: 1.5px !important;
+    text-align: center;              /* centra el texto */
+    position: relative;              /* permite ajuste fino */
+    top: 35px !important;            /* 🔧 mueve el título independiente del form */
+  }
+
+    /* ============================================================
+       🚫 OCULTAR EL MARCO GRANDE
+       ============================================================ */
+
+    .marco {
+        display: none !important;
+    }
+
+    /* ============================================================
+       🖼️ DEJAR SOLAMENTE MARCO1
+       ============================================================ */
+
+    .marco1 {
+        display: block !important;
+
+        position: absolute !important;
+
+        top: 89% !important;
+        left: 50% !important;
+
+        margin: 0 !important;
+
+        width: 400px !important;
+        height: 600px !important;
+
+        max-width: none !important;
+        max-height: none !important;
+
+        aspect-ratio: auto !important;
+
+        transform:
+            translate(-50%, -50%)
+            scaleX(1.1)
+            scaleY(1.7) !important;
+            margin-top: 50vh;
+            margin-right: 50vh;
+
+        transform-origin: center center !important;
+
+        z-index: 0 !important;
+    }
+  }
+
+@media (min-width: 800px) and (max-height: 600px) and (orientation: landscape) {
+
+  /* 🔹 FORMULARIO PRINCIPAL */
+  #formCorreo {
+    width: 100% !important;          /* ancho total relativo */
+    max-width: 170px !important;     /* límite máximo del formulario */
+    margin: 0 auto !important;       /* centra horizontalmente */
+    margin-top: 5vh !important;     /* baja el formulario dentro del marco */
+    gap: 5px !important;             /* 🔧 reduce espacio entre bloques (label + caja) */
+    transform: scaleX(1) scaleY(0.8) !important;
+    transform-origin: center center !important;
+    position: relative !important;
+    top: -5px !important;
+
+  }
+
+  /* 🔹 LABELS (textos arriba de las cajas) */
+  #formCorreo label {
+    font-size: 0.9em !important;     /* tamaño de letra del label */
+    margin-bottom: -5px !important;  /* 🔧 acerca el texto a la caja */
+    letter-spacing: 1px !important;  /* separación entre letras */
+  }
+
+  /* 🔹 CAMPOS DE TEXTO */
+  #formCorreo input,
+  #formCorreo textarea {
+    font-size: 0.9em !important;     /* tamaño de letra dentro de la caja */
+    padding: 3px !important;         /* espacio interno más compacto */
+    margin-top: 3px !important;     /* 🔧 acerca la caja al label */
+    left: 58px !important;           /* mantiene alineación horizontal */
+  }
+
+  /* 🔹 BOTÓN ROJO */
+  #formCorreo button {
+    font-size: 0.9em !important;     /* tamaño de letra del botón */
+    padding: 4px 0 !important;       /* espacio interno vertical */
+    width: 100% !important;           /* ancho relativo del botón */
+    margin: 6px auto !important;     /* 🔧 separa del campo anterior */
+    left: 57.5px !important;           /* mantiene centrado */
+  }
+
+  /* 🔹 MARCO GENERAL */
+ .marco1 {
+    width: 600px !important;
+    height: 400px !important;
+          
+
+        top: 110px;
+
+    margin-top: -138px !important;    /* ✅ centra verticalmente entre las senefas */
+    left: -32% !important;
+    transform: scaleX(2.6) scaleY(1.6) !important;
+    transform-origin: center center !important; /* ✅ referencia desde el centro */
+  
+  }
+
+
+
+
+  /* 🔹 TÍTULO DEL FORMULARIO */
+  #correo h2 {
+    font-size: 0.9em !important;     /* tamaño del título */
+    margin-top: 5vh !important;    /* espacio arriba del título */
+    margin-bottom: 0px !important;   /* espacio debajo del título */
+    letter-spacing: 1.5px !important;
+    text-align: center;              /* centra el texto */
+    position: relative;              /* permite ajuste fino */
+    top: 35px !important;            /* 🔧 mueve el título independiente del form */
+  }
+}
+
+
+/*===========================================================*/
+
+
+/* 🎇 Marco animado base – válido para los que sirven */
+@media (min-width: 499px) and (min-height: 663px) {
+  .marco {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160%;
+    max-width: 900px;
+    aspect-ratio: 9/12;
+    transform: translate(-50%, -50%);
+    /*box-shadow: 0 0 25px red;*/
+    z-index: 0;
+  }
+  .marco img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* 🚫 Ocultar marco en pantallas menores a 499x663 */
+@media (max-width: 498px), (max-height: 662px) {
+  .marco {
+    display: none !important;
+  }
+}
+/* 📱 Marco alternativo – válido solo en móviles pequeños */
+@media (max-width: 498px), (max-height: 662px) {
+  .marco { display: none !important; }   /* oculta marco grande */
+  .marco1 {
+    position: absolute;
+    top: 51.2%;
+    left: 50%;
+    width: 305%;
+    max-width: 280px;
+    aspect-ratio: 9/12;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    /*box-shadow: 0 0 15px red;*/
+    z-index: 0;
+  }
+  .marco1 img {
+    width: auto;
+    height: 320px;      /* alto fijo solo en móviles */
+    object-fit: cover;
+  }
+}
+
+/* 🚫 Ocultar marco1 en pantallas grandes */
+@media (min-width: 499px) and (min-height: 663px) {
+  .marco1 { display: none !important; }
+}
+
+/*================= SENEFA TEXTO METALICO ==================*/
 .senefaTextoMetal {
   font-size: 2.5em;
   font-weight: 900;
@@ -110,7 +1397,8 @@ body {
   border: none;
 }
 
-/* Carruseles */
+
+/*=============CARRUSELES==================*/
 #contenedor-carruseles {
   position: relative;
   width: 100%;
@@ -440,9 +1728,9 @@ body {
 }
 
 /* ===== RESPONSIVE PARA MÓVILES VERTICAL ===== */
-@media (max-width: 768px) and (orientation: portrait) {
+
+  @media (max-width: 768px) and (orientation: portrait) {
   #cursor { display: none !important; }
-  
   body {
     padding: 0 !important;
     height: auto !important;
@@ -550,6 +1838,37 @@ body {
 .caracteristicas .card:nth-child(3) {
   grid-column: 1 / 3;
   justify-self: center;
+}
+/* ===== MÓVILES GRANDES (PORTRAIT) – ROMPECABEZAS ===== */
+@media (min-width: 769px) and (max-width: 2480px) and (orientation: portrait) {
+  #intro {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    z-index: 1000;
+  }
+
+  #rompecabezas {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    background: #000;
+  }
+
+  .pieza {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 /* ===== HORIZONTAL (LANDSCAPE) ===== */
@@ -685,7 +2004,17 @@ body {
     opacity: 1 !important;
     /* ❌ quitamos fadePuzzle para evitar doble animación */
   }
-  
+  /* Permitir pinch-zoom nativo sobre las imágenes del carrusel */
+.swiper-slide,
+.swiper-slide img,
+.foto-con-texto {
+  touch-action: pinch-zoom !important;
+  -webkit-user-drag: none;
+}
+.swiper-wrapper,
+.swiper {
+  touch-action: pinch-zoom !important;
+}
   /* Rompecabezas horizontal */
   #intro {
     position: fixed;
@@ -964,7 +2293,7 @@ body {
   }
 }
 
-* {
+ {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -973,7 +2302,7 @@ body {
   backface-visibility: hidden;
 }
 
-// ==================== CREAR PIEZAS DEL ROMPECABEZAS ====================
+/*==================== CREAR PIEZAS DEL ROMPECABEZAS ====================*/
 const rompecabezas = document.getElementById("rompecabezas");
 
 for (let fila = 0; fila < 6; fila++) {
@@ -1114,6 +2443,7 @@ for (let fila = 0; fila < 6; fila++) {
   -o-transition: transform 0.6s ease-in-out !important;
   -ms-transition: transform 0.6s ease-in-out !important;
 }
+}
 
 /* Imagen activa más grande */
 .swiper-slide-active img {
@@ -1127,3 +2457,62 @@ for (let fila = 0; fila < 6; fila++) {
   transform: scale(0.85) translateZ(0) !important;
   opacity: 0.8 !important;
   z-index: 1 !important;
+}
+/* ================== BORDE LED GLOBAL ================== */
+.led-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  border: 4px solid #ff0000; /* color base del neón */
+  box-shadow:
+    inset 0 0 10px #ff0000,
+    0 0 15px #ff0000,
+    0 0 30px #ff0000;
+  pointer-events: none; /* permite clics sobre el contenido */
+  z-index: 9999;
+  animation: pulsoLed 3s linear infinite;
+}
+
+/* 🔹 Animación de pulso */
+@keyframes pulsoLed {
+  0% {
+    box-shadow:
+      inset 0 0 10px #ff0000,
+      0 0 15px #ff0000,
+      0 0 30px #ff0000;
+    border-color: #ff0000;
+  }
+  50% {
+    box-shadow:
+      inset 0 0 20px #ffffff,
+      0 0 30px #ff0000,
+      0 0 60px #ff0000;
+    border-color: #ffffff;
+  }
+  100% {
+    box-shadow:
+      inset 0 0 10px #ff0000,
+      0 0 15px #ff0000,
+      0 0 30px #ff0000;
+    border-color: #ff0000;
+  }
+}
+.marco img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* 🔹 se estira al alto y ancho exactos */
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
