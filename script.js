@@ -795,6 +795,53 @@ document.addEventListener("contextmenu", function(e) {
   e.preventDefault();
   mostrarAvisoTabletAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
 });
+// ==================== BLOQUE MOVILES ====================
+function mostrarAvisoMovil(mensaje) {
+  const aviso = document.createElement("div");
+  aviso.textContent = mensaje + " 😂";
+  aviso.style.cssText = `
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.2em;
+    padding: 40px 80px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255,0,0,0.9);
+    z-index: 99999;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8);
+  `;
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 2500);
+}
+
+let touchTimer;
+document.addEventListener("touchstart", function(e) {
+  if (e.touches.length > 1) return; // dos dedos → zoom
+  touchTimer = setTimeout(() => {
+    mostrarAvisoMovil("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
+  }, 600);
+});
+
+document.addEventListener("touchmove", function(e) {
+  if (e.touches.length > 1) {
+    clearTimeout(touchTimer); // cancelar si pasa a zoom
+  }
+});
+
+document.addEventListener("touchend", function() {
+  clearTimeout(touchTimer);
+});
+
+document.addEventListener("contextmenu", function(e) {
+  e.preventDefault();
+  mostrarAvisoMovil("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
+});
 
 
 
