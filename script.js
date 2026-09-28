@@ -613,6 +613,7 @@ function efectoBotonCorreo() {
   });
 }
 
+
 // ==================== AVISO CENTRAL EN ÓVALO ====================
 function mostrarAvisoWin(mensaje) {
   const aviso = document.createElement("div");
@@ -741,177 +742,14 @@ document.addEventListener("keydown", function(e) {
     mostrarAvisoLinux("⚠️ Captura de ventana bloqueada - Propiedad de Tato Cabrera");
   }
 });
-// ==================== ANDROID ====================
-function mostrarAvisoAndroid(mensaje) {
-  const aviso = document.createElement("div");
-  aviso.textContent = mensaje + " 😂";
-  aviso.style.cssText = `
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.85);
-    color: #ff0000;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 2em;
-    padding: 30px 60px;
-    border-radius: 50%;
-    box-shadow: 0 0 40px rgba(255,0,0,0.9);
-    z-index: 99999;
-    text-align: center;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(255,0,0,0.8);
-  `;
-  document.body.appendChild(aviso);
-  setTimeout(() => aviso.remove(), 2500);
-}
 
-// Detectar long press en Android
-let touchTimer;
-document.addEventListener("touchstart", function() {
-  touchTimer = setTimeout(() => {
-    mostrarAvisoAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
-  }, 600);
-});
-document.addEventListener("touchend", function() {
-  clearTimeout(touchTimer);
-});
-
-// Bloquear menú contextual Android
-document.addEventListener("contextmenu", function(e) {
-  e.preventDefault();
-  mostrarAvisoAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
-});
-
-
-// ==================== APPLE iOS ====================
-function mostrarAvisoIOS(mensaje) {
-  const aviso = document.createElement("div");
-  aviso.textContent = mensaje + " 😂";
-  aviso.style.cssText = `
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.85);
-    color: #ff0000;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 2em;
-    padding: 30px 60px;
-    border-radius: 50%;
-    box-shadow: 0 0 40px rgba(255,0,0,0.9);
-    z-index: 99999;
-    text-align: center;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(255,0,0,0.8);
-  `;
-  document.body.appendChild(aviso);
-  setTimeout(() => aviso.remove(), 2500);
-}
-
-// Detectar long press en iOS
-let iosTouchTimer;
-document.addEventListener("touchstart", function() {
-  iosTouchTimer = setTimeout(() => {
-    mostrarAvisoIOS("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
-  }, 600);
-});
-document.addEventListener("touchend", function() {
-  clearTimeout(iosTouchTimer);
-});
-
-// Bloquear menú contextual iOS
-document.addEventListener("contextmenu", function(e) {
-  e.preventDefault();
-  mostrarAvisoIOS("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
-});
 
 // ==================== DETECCIÓN DE PLATAFORMA ====================
 const ua = navigator.userAgent.toLowerCase();
 const esAndroid = ua.includes("android");
 const esIOS = /iphone|ipad|ipod/.test(ua);
 
-// ==================== ANDROID ====================
-if (esAndroid) {
-  function mostrarAvisoAndroid(mensaje) {
-    const aviso = document.createElement("div");
-    aviso.textContent = mensaje + " 😂";
-    aviso.style.cssText = `
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.85);
-      color: #ff0000;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 2em;
-      padding: 30px 60px;
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(255,0,0,0.9);
-      z-index: 99999;
-      text-align: center;
-      letter-spacing: 2px;
-      text-shadow: 0 0 15px rgba(255,0,0,0.8);
-    `;
-    document.body.appendChild(aviso);
-    setTimeout(() => aviso.remove(), 2500);
-  }
 
-  let touchTimer;
-  document.addEventListener("touchstart", function() {
-    touchTimer = setTimeout(() => {
-      mostrarAvisoAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
-    }, 600);
-  });
-  document.addEventListener("touchend", function() {
-    clearTimeout(touchTimer);
-  });
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-    mostrarAvisoAndroid("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
-  });
-}
-
-// ==================== APPLE iOS ====================
-if (esIOS) {
-  function mostrarAvisoIOS(mensaje) {
-    const aviso = document.createElement("div");
-    aviso.textContent = mensaje + " 😂";
-    aviso.style.cssText = `
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.85);
-      color: #ff0000;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 2em;
-      padding: 30px 60px;
-      border-radius: 50%;
-      box-shadow: 0 0 40px rgba(255,0,0,0.9);
-      z-index: 99999;
-      text-align: center;
-      letter-spacing: 2px;
-      text-shadow: 0 0 15px rgba(255,0,0,0.8);
-    `;
-    document.body.appendChild(aviso);
-    setTimeout(() => aviso.remove(), 2500);
-  }
-
-  let iosTouchTimer;
-  document.addEventListener("touchstart", function() {
-    iosTouchTimer = setTimeout(() => {
-      mostrarAvisoIOS("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
-    }, 600);
-  });
-  document.addEventListener("touchend", function() {
-    clearTimeout(iosTouchTimer);
-  });
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-    mostrarAvisoIOS("⚠️ Copia bloqueada - Propiedad de Tato Cabrera");
-  });
-}
 // ==================== TABLETS ANDROID ====================
 function mostrarAvisoTabletAndroid(mensaje) {
   const aviso = document.createElement("div");
@@ -939,13 +777,19 @@ function mostrarAvisoTabletAndroid(mensaje) {
 
 // Detectar long press en tablets Android
 let tabletTouchTimer;
-document.addEventListener("touchstart", function() {
+document.addEventListener("touchstart", function(e) {
   tabletTouchTimer = setTimeout(() => {
     mostrarAvisoTabletAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
   }, 600);
 });
-document.addEventListener("touchend", function() {
+
+document.addEventListener("touchend", function(e) {
   clearTimeout(tabletTouchTimer);
+    if (e.touches.length > 1) {
+    // Si son dos dedos → es zoom, no activar aviso
+    return;
+  }
+
 });
 
 // Bloquear menú contextual en tablets Android
