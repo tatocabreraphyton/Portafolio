@@ -749,7 +749,6 @@ const ua = navigator.userAgent.toLowerCase();
 const esAndroid = ua.includes("android");
 const esIOS = /iphone|ipad|ipod/.test(ua);
 
-
 // ==================== TABLETS ANDROID ====================
 function mostrarAvisoTabletAndroid(mensaje) {
   const aviso = document.createElement("div");
@@ -778,18 +777,17 @@ function mostrarAvisoTabletAndroid(mensaje) {
 // Detectar long press en tablets Android
 let tabletTouchTimer;
 document.addEventListener("touchstart", function(e) {
+  // Si son dos dedos → es zoom, no activar aviso
+  if (e.touches.length > 1) return;
+
+  // Si es un dedo → posible intento de copiar
   tabletTouchTimer = setTimeout(() => {
     mostrarAvisoTabletAndroid("⚠️ Intento de captura bloqueado - Propiedad de Tato Cabrera");
   }, 600);
 });
 
-document.addEventListener("touchend", function(e) {
+document.addEventListener("touchend", function() {
   clearTimeout(tabletTouchTimer);
-    if (e.touches.length > 1) {
-    // Si son dos dedos → es zoom, no activar aviso
-    return;
-  }
-
 });
 
 // Bloquear menú contextual en tablets Android
