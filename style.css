@@ -2507,6 +2507,10 @@ for (let fila = 0; fila < 6; fila++) {
   display: block;
 }
 
+html, body {
+  overflow: hidden;
+  touch-action: none;
+}
 
 
 
