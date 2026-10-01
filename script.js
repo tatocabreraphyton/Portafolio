@@ -619,8 +619,5 @@ const esAndroid = ua.includes("android");
 const esIOS = /iphone|ipad|ipod/.test(ua);
 
 
-new Swiper('.swiper', {
-  zoom: true
-});
 
 
